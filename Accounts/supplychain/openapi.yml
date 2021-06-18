@@ -8,52 +8,108 @@ paths:
   /api/createAcct:
     post:
       requestBody:
-        $ref: '#/components/schemas/Account'
+        description: Create an account on a node
+        content:
+          applicatoin/json:
+            schema:
+              $ref: '#/components/schemas/Account'
       responses:
         '200':
-          $ref: '#/components/schemas/Status'
+          description: OK or not
+          content:
+            applicatoin/json:
+              schema:
+                $ref: '#/components/schemas/Status'
   /api/shareAcct:
     post:
       requestBody:
-        $ref: '#/components/schemas/AccountShare'
+        description: Share an account
+        content:
+          applicatoin/json:
+            schema:
+              $ref: '#/components/schemas/AccountShare'
       responses:
         '200':
-          $ref: '#/components/schemas/Status'
+          description: OK or not
+          content:
+            applicatoin/json:
+              schema:
+                $ref: '#/components/schemas/Status'
   /api/sendInternalMessage:
     post:
       requestBody:
-        $ref: '#/components/schemas/InternalMessage'
+        description: Send an internal message on a node
+        content:
+          applicatoin/json:
+            schema:
+              $ref: '#/components/schemas/InternalMessage'
       responses:
         '200':
-          $ref: '#/components/schemas/Status'
+          description: OK or not
+          content:
+            applicatoin/json:
+              schema:
+                $ref: '#/components/schemas/Status'
   /api/snedInvoice:
-      post:
-        requestBody:
-          $ref: '#/components/schemas/Invoice'
-        responses:
-          '200':
-            $ref: '#/components/schemas/Status'
+    post:
+      requestBody:
+        description: Send invoice from seller to buyer
+        content:
+          applicatoin/json:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+      responses:
+        '200':
+          description: OK or not
+          content:
+            applicatoin/json:
+              schema:
+                $ref: '#/components/schemas/Status'
   /api/snedPayment:
     post:
       requestBody:
-        $ref: '#/components/schemas/Payment'
+        description: Send payment from buyer to seller
+        content:
+          applicatoin/json:
+            schema:
+              $ref: '#/components/schemas/Payment'
       responses:
         '200':
-          $ref: '#/components/schemas/Status'
+          description: OK or not
+          content:
+            applicatoin/json:
+              schema:
+                $ref: '#/components/schemas/Status'
   /api/sendShippingRequest:
     post:
       requestBody:
-        $ref: '#/components/schemas/ShippingRequest'
+        description: Send a shipping request from seller to shippingCo
+        content:
+          applicatoin/json:
+            schema:
+              $ref: '#/components/schemas/ShippingRequest'
       responses:
         '200':
-          $ref: '#/components/schemas/Status'
+          description: OK or not
+          content:
+            applicatoin/json:
+              schema:
+                $ref: '#/components/schemas/Status'
   /api/sendCargo:
     post:
       requestBody:
-        $ref: '#/components/schemas/Cargo'
+        description: Send cargo on shippingCo from seller to buyer
+        content:
+          applicatoin/json:
+            schema:
+              $ref: '#/components/schemas/Cargo'
       responses:
         '200':
-          $ref: '#/components/schemas/Status'
+          description: OK or not
+          content:
+            applicatoin/json:
+              schema:
+                $ref: '#/components/schemas/Status'
   /api/inbox:
     get:
       parameters:
@@ -69,7 +125,11 @@ paths:
           description: the account name
       responses:
         '200':
-          $ref: '#/components/schemas/Inbox'
+          description: OK
+          content:
+            applicatoin/json:
+              schema:
+                $ref: '#/components/schemas/Inbox'
 components:
   schemas:
     Account:
