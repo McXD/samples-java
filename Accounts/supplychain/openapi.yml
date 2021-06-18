@@ -1,0 +1,185 @@
+openapi: '3.0.2'
+info:
+  title: Supplychain API
+  version: '1.0'
+servers:
+  - url: https://localhost:8080
+paths:
+  /api/createAcct:
+    post:
+      requestBody:
+        $ref: '#/components/schemas/Account'
+      responses:
+        '200':
+          $ref: '#/components/schemas/Status'
+  /api/shareAcct:
+    post:
+      requestBody:
+        $ref: '#/components/schemas/AccountShare'
+      responses:
+        '200':
+          $ref: '#/components/schemas/Status'
+  /api/sendInternalMessage:
+    post:
+      requestBody:
+        $ref: '#/components/schemas/InternalMessage'
+      responses:
+        '200':
+          $ref: '#/components/schemas/Status'
+  /api/snedPayment:
+    post:
+      requestBody:
+        $ref: '#/components/schemas/Payment'
+      responses:
+        '200':
+          $ref: '#/components/schemas/Status'
+  /api/sendShippingRequest:
+    post:
+      requestBody:
+        $ref: '#/components/schemas/ShippingRequest'
+      responses:
+        '200':
+          $ref: '#/components/schemas/Status'
+  /api/sendCargo:
+    post:
+      requestBody:
+        $ref: '#/components/schemas/Cargo'
+      responses:
+        '200':
+          $ref: '#/components/schemas/Status'
+  /api/inbox:
+    get:
+      parameters:
+        - in: query
+          name: node
+          schema:
+            type: string
+          description: node the account resides on
+        - in: query
+          name: acctName
+          schema:
+            type: string
+          description: the account name
+      responses:
+        '200':
+          $ref: '#/components/schemas/Inbox'
+components:
+  schemas:
+    Account:
+      type: object
+      required:
+        - acctName
+        - onNode
+      properties:
+        acctName:
+          type: string
+        onNode:
+          type: string
+    AccountShare:
+      type: object
+      required:
+        - senderNode
+        - receiverNode
+        - acctName
+      properties:
+        senderNode:
+          type: string
+        receiverNode:
+          type: string
+        acctName:
+          type: string
+    Invoice:
+      type: object
+      required:
+        - whoAmI
+        - whereTo
+        - amount
+      properties:
+        whoAmI:
+          type: string
+        whereTo:
+          type: string
+        amuont:
+          type: integer
+          format: int32
+    InternalMessage:
+      type: object
+      required:
+        - onNode
+        - whoAmI
+        - whereTo
+        - message
+      properties:
+        onNode:
+          type: string
+        whoAmI:
+          type: string
+        whereTo:
+          type: string
+        message:
+          type: string
+    Payment:
+      type: object
+      required:
+        - whoAmI
+        - whereTo
+        - amount
+      properties:
+        whoAmI:
+          type: string
+        whereTo:
+          type: string
+        amuont:
+          type: integer
+          format: int32
+    ShippingRequest:
+      type: object
+      required:
+        - whoAmI
+        - whereTo
+        - cargo
+      properties:
+        whoAmI:
+          type: string
+        whereTo:
+          type: string
+        cargo:
+          type: string
+    Cargo:
+      type: object
+      required:
+        - pickUpFrom
+        - whereTo
+        - cargo
+      properties:
+        pickUpFrom:
+          type: string
+        whereTo:
+          type: string
+        cargo:
+          type: string
+    Inbox:
+      type: object
+      required:
+        - fromNode
+        - ofAcct
+        - messages
+      properties:
+        fromNode:
+          type: string
+        ofAcct:
+          type: string
+        messages:
+          type: array
+          items:
+            type: string
+    Status:
+      type: object
+      required:
+        - success
+      properties:
+        success:
+          type: boolean
+      
+
+        
