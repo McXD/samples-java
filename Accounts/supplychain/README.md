@@ -100,6 +100,89 @@ flow start SendCargo pickupFrom: SellerInventory, shipTo: BuyerWarehouse, cargo:
 
 ## Now, the entire business chain is completed. 
 
+# REST API Overview
 
+A single web endpoint exposes REST APIs for operations on 3 Nodes: `Buyer`, `Seller` and `ShippingCo`.
 
+## Operations
 
+* Create an account on any of the three nodes
+  * **Method**: `POST`
+  * **URL**: `/api/createAcct`
+  * **Body**: `Account`
+  * **Response**: `Status`
+* Share account on any of the three nodes
+  * **Method**: `POST`
+  * **URL**: `/api/shareAcct`
+  * **Body**: `AccountShare`
+  * **Response**: `Status`
+* Send Invoice on `Seller`
+  * **Method**: `POST`
+  * **URL**: `/api/sendInvoice`
+  * **Body**: `Invoice`
+  * **Response**: `Status`
+  * **Note**: the flow operation is delegated to `Seller`
+* Send internal messages on any of the three nodes
+  * **Method**: `POST`
+  * **URL**: `/api/sendInternalMessage`
+  * **Body**: `InternalMessage`
+  * **Response**: `Status`
+* Send payment on `Buyer`
+  * **Method**: `POST`
+  * **URL**: `/api/sendPayment`
+  * **Body**: `Payment`
+  * **Response**: `Status`    
+  * **Note**: the flow operation is delegated to `Buyer`
+* Send shipping request on `Seller`
+  * **Method**: `POST`
+  * **URL**: `/api/sendShippingRequest`
+  * **Body**: `ShippingRequest`
+  * **Response**: `Status`    
+  * **Note**: the flow operation is delegated to `Buyer`
+* Send cargo on `ShippingCo`
+  * **Method**: `POST`
+  * **URL**: `/api/sendCargo`
+  * **Body**: `Cargo`
+  * **Response**: `Status`    
+  * **Note**: the flow operation is delegated to `ShippingCo`
+* Additionally, for monitoring, view inbox on any of the three nodes for their accounts
+  * **Method**: `GET`
+  * **URL**: `/api/inbox?node=$node&acctName=$acctName`
+  * **Response**: `Inbox`
+
+## Required Abstract Data Model
+
+* Account
+  * onNode: String
+  * acctName: String
+* AccountShare
+  * senderNode: String
+  * receiverNode: String
+  * acctName: String
+* Invoice
+  * whoAmI : String
+  * whereTo : String
+  * amount : int32
+* InternalMessage
+  * onNode: String
+  * whoAmI : String
+  * whereTo : String
+  * message : String
+* Payment
+  * whoAmI: String
+  * whereTo: String
+  * amount: int32
+* ShippingRequest
+  * whoAmI: String
+  * whereTo: String
+  * cargo: String
+* Cargo
+  * pickUpFrom: String
+  * whereTo: String
+  * cargo: String
+* Inbox
+  * fromNode: String
+  * ofAcct: String
+  * messages: List<String>
+* Status
+  * success: boolean

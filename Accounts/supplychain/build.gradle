@@ -34,6 +34,8 @@ buildscript {
         classpath "net.corda.plugins:cordapp:$corda_gradle_plugins_version"
         classpath "net.corda.plugins:cordformation:$corda_gradle_plugins_version"
         classpath "net.corda.plugins:quasar-utils:$corda_gradle_plugins_version"
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.3.2.RELEASE")
+
     }
 }
 
