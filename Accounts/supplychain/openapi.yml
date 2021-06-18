@@ -26,6 +26,13 @@ paths:
       responses:
         '200':
           $ref: '#/components/schemas/Status'
+  /api/snedInvoice:
+      post:
+        requestBody:
+          $ref: '#/components/schemas/Invoice'
+        responses:
+          '200':
+            $ref: '#/components/schemas/Status'
   /api/snedPayment:
     post:
       requestBody:

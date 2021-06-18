@@ -7,18 +7,19 @@ import net.corda.core.utilities.NetworkHostAndPort;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 public class NodeRPCConnection {
     @Value("${config.rpc.host}")
-    private static String host;
+    private String host;
     @Value("${config.rpc.username}")
-    private static String username;
+    private String username;
     @Value("${config.rpc.password}")
-    private static String password;
+    private String password;
 
     @Bean(name = "buyerProxy")
-    public static CordaRPCOps buyerProxy(@Value("$config.rpc.buyer.port") int port){
+    public CordaRPCOps buyerProxy(@Value("${config.rpc.buyer.port}") int port){
         NetworkHostAndPort rpcAddress = new NetworkHostAndPort(host, port);
         CordaRPCClient rpcClient = new CordaRPCClient(rpcAddress);
         CordaRPCConnection connection = rpcClient.start(username, password);
@@ -26,7 +27,7 @@ public class NodeRPCConnection {
     }
 
     @Bean(name = "sellerProxy")
-    public static CordaRPCOps sellerProxy(@Value("$config.rpc.seller.port") int port){
+    public CordaRPCOps sellerProxy(@Value("${config.rpc.seller.port}") int port){
         NetworkHostAndPort rpcAddress = new NetworkHostAndPort(host, port);
         CordaRPCClient rpcClient = new CordaRPCClient(rpcAddress);
         CordaRPCConnection connection = rpcClient.start(username, password);
@@ -34,7 +35,7 @@ public class NodeRPCConnection {
     }
 
     @Bean(name = "shipperProxy")
-    public static CordaRPCOps shipperProxy(@Value("$config.rpc.shipper.port") int port){
+    public CordaRPCOps shipperProxy(@Value("${config.rpc.shipper.port}") int port){
         NetworkHostAndPort rpcAddress = new NetworkHostAndPort(host, port);
         CordaRPCClient rpcClient = new CordaRPCClient(rpcAddress);
         CordaRPCConnection connection = rpcClient.start(username, password);
