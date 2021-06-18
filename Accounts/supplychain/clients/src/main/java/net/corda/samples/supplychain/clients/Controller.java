@@ -161,7 +161,7 @@ public class Controller implements ApplicationContextAware {
         Status status = new Status(true);
 
         try{
-            sellerProxy.startFlowDynamic(SendPayment.class, shippingRequest.getWhoAmI(), shippingRequest.getWhereTo(), shipperProxy.nodeInfo().getLegalIdentities().get(0), shippingRequest.getCargo());
+            sellerProxy.startFlowDynamic(SendShippingRequest.class, shippingRequest.getWhoAmI(), shippingRequest.getWhereTo(), shipperProxy.nodeInfo().getLegalIdentities().get(0), shippingRequest.getCargo());
         }catch(Exception e){
             logger.info(e.getMessage());
             status.setSuccess(false);

@@ -10,14 +10,14 @@ paths:
       requestBody:
         description: Create an account on a node
         content:
-          applicatoin/json:
+          application/json:
             schema:
               $ref: '#/components/schemas/Account'
       responses:
         '200':
           description: OK or not
           content:
-            applicatoin/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Status'
   /api/shareAcct:
@@ -25,14 +25,14 @@ paths:
       requestBody:
         description: Share an account
         content:
-          applicatoin/json:
+          application/json:
             schema:
               $ref: '#/components/schemas/AccountShare'
       responses:
         '200':
           description: OK or not
           content:
-            applicatoin/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Status'
   /api/sendInternalMessage:
@@ -40,44 +40,44 @@ paths:
       requestBody:
         description: Send an internal message on a node
         content:
-          applicatoin/json:
+          application/json:
             schema:
               $ref: '#/components/schemas/InternalMessage'
       responses:
         '200':
           description: OK or not
           content:
-            applicatoin/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-  /api/snedInvoice:
+  /api/sendInvoice:
     post:
       requestBody:
         description: Send invoice from seller to buyer
         content:
-          applicatoin/json:
+          application/json:
             schema:
               $ref: '#/components/schemas/Invoice'
       responses:
         '200':
           description: OK or not
           content:
-            applicatoin/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Status'
-  /api/snedPayment:
+  /api/sendPayment:
     post:
       requestBody:
         description: Send payment from buyer to seller
         content:
-          applicatoin/json:
+          application/json:
             schema:
               $ref: '#/components/schemas/Payment'
       responses:
         '200':
           description: OK or not
           content:
-            applicatoin/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Status'
   /api/sendShippingRequest:
@@ -85,14 +85,14 @@ paths:
       requestBody:
         description: Send a shipping request from seller to shippingCo
         content:
-          applicatoin/json:
+          application/json:
             schema:
               $ref: '#/components/schemas/ShippingRequest'
       responses:
         '200':
           description: OK or not
           content:
-            applicatoin/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Status'
   /api/sendCargo:
@@ -100,14 +100,14 @@ paths:
       requestBody:
         description: Send cargo on shippingCo from seller to buyer
         content:
-          applicatoin/json:
+          application/json:
             schema:
               $ref: '#/components/schemas/Cargo'
       responses:
         '200':
           description: OK or not
           content:
-            applicatoin/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Status'
   /api/inbox:
@@ -127,7 +127,7 @@ paths:
         '200':
           description: OK
           content:
-            applicatoin/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Inbox'
 components:
@@ -166,7 +166,7 @@ components:
           type: string
         whereTo:
           type: string
-        amuont:
+        amount:
           type: integer
           format: int32
     InternalMessage:
@@ -184,7 +184,7 @@ components:
         whereTo:
           type: string
         message:
-          type: string
+          type: string 
     Payment:
       type: object
       required:
@@ -196,7 +196,7 @@ components:
           type: string
         whereTo:
           type: string
-        amuont:
+        amount:
           type: integer
           format: int32
     ShippingRequest:
@@ -236,7 +236,7 @@ components:
           type: string
         ofAcct:
           type: string
-        messages:
+        message:
           type: array
           items:
             type: string
